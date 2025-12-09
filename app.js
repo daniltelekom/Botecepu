@@ -127,6 +127,7 @@ const lessonsData = {
           type: "image",
           src: "images/op_21_login_placeholder.png",
           caption:
+            "Окно входа в Azimut.ECPU."
         },
         {
           type: "title",
@@ -188,6 +189,7 @@ const lessonsData = {
           type: "image",
           src: "images/op_22_orders_placeholder.png",
           caption:
+            "Раздел «Заказы» со списком заявок."
         },
         {
           type: "title",
@@ -287,6 +289,7 @@ const lessonsData = {
           type: "image",
           src: "images/op_23_comments_placeholder.png",
           caption:
+            " «Внешний комментарий» и «Комментарий» в карточке заявки."
         },
         {
           type: "title",
@@ -343,12 +346,13 @@ const lessonsData = {
           type: "text",
           text:
             "Во вкладке «Задачи и проекты» выбираем раздел «Задания». " +
-            "Здесь оператор видит все задания, назначенные на него: исходящие звонки, которые нужно обработать."
+            "Здесь оператор видит все задачи, назначенные на него: исходящие звонки, которые нужно обработать."
         },
         {
           type: "image",
           src: "images/op_24_tasks_placeholder.png",
           caption:
+            "Раздел «Задания» с примером списка задач."
         },
         {
           type: "title",
@@ -377,18 +381,18 @@ const lessonsData = {
       test: [
         {
           question:
-            "Где оператор видит список исходящих заданий, назначенных на него?",
+            "Где оператор видит список исходящих задач, назначенных на него?",
           options: [
             "Во вкладке «Заказы»",
             "Во вкладке «Телефония»",
-            "Во вкладке «Задачи и проекты» → «Задания»",
+            "Во вкладке «Задачи и проекты» → «Задачи»",
             "В блокноте на столе"
           ],
           correctIndex: 2
         },
         {
           question:
-            "Какой статус задачи говорит о том, что звонок уже отработан?",
+            "Какой статус задания говорит о том, что звонок уже отработан?",
           options: [
             "Назначено / Не обработано",
             "Выполнено / Готово",
@@ -429,6 +433,7 @@ const lessonsData = {
           type: "image",
           src: "images/op_25_card_placeholder.png",
           caption:
+            "Карточка заказа с отмеченными основными полями."
         },
         {
           type: "title",
@@ -502,6 +507,7 @@ const lessonsData = {
           type: "image",
           src: "images/op_26_call_placeholder.png",
           caption:
+            "Блок с телефонами и примером вызова через телефонию."
         },
         {
           type: "title",
@@ -576,6 +582,7 @@ const lessonsData = {
           type: "image",
           src: "images/op_27_schedule_placeholder.png",
           caption:
+            "Выбора даты и временного интервала для мастера."
         },
         {
           type: "title",
@@ -640,6 +647,7 @@ const lessonsData = {
           type: "image",
           src: "images/op_28_done_placeholder.png",
           caption:
+            "Смены статуса задачи на «Готово» / «Выполнено»."
         },
         {
           type: "title",
