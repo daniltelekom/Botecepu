@@ -910,7 +910,7 @@ function renderRoleSelect() {
         </div>
       </div>
     </div>
-  ;
+  `;
 
   const operatorCard = appRoot.querySelector('[data-role="operator"]');
   operatorCard.addEventListener("click", () => {
@@ -953,7 +953,7 @@ function renderShell() {
         ? "sidebar-status-pill locked"
         : "sidebar-status-pill";
 
-      return 
+      return `
         <div class="sidebar-item ${active ? "active" : ""}" data-module-id="${m.id}" data-locked="${locked}">
           <div class="sidebar-item-label">
             <div class="sidebar-item-main">${index + 1}. ${m.title}</div>
@@ -961,7 +961,7 @@ function renderShell() {
           </div>
           <div class="${pillClass}">${statusText}</div>
         </div>
-      ;
+      `;
     })
     .join("");
 
@@ -970,7 +970,7 @@ function renderShell() {
   else if (state.screen === "lesson" && currentModule) mainContentHtml = renderLessonScreenInner(currentModule);
   else if (state.screen === "test" && currentModule) mainContentHtml = renderTestScreenInner(currentModule);
 
-  appRoot.innerHTML = 
+  appRoot.innerHTML = `
     <div class="app-shell">
       <div class="app-header">
         <div class="app-title-group">
@@ -1015,7 +1015,7 @@ function renderModulesScreenInner(modules, roleProgress) {
   const completedCount = (roleProgress.completed || []).length;
   const total = modules.length;
 
-  return 
+  return `
     <div class="breadcrumbs">${roleLabel(state.role)} · Обучающие модули</div>
     <div class="main-heading">План обучения</div>
     <div class="main-description">
@@ -1032,36 +1032,36 @@ function renderModulesScreenInner(modules, roleProgress) {
         <li>После успешной сдачи теста откроется следующий модуль.</li>
       </ul>
     </div>
-  ;
+  `;
 }
 
 function renderLessonScreenInner(module) {
   const contentBlocks = module.content
     .map((block) => {
       if (block.type === "title") {
-        return <div class="block"><div class="block-title">${block.text}</div></div>;
+        return `<div class="block"><div class="block-title">${block.text}</div></div>`;
       }
       if (block.type === "text") {
-        return <div class="block"><div>${block.text}</div></div>;
+        return `<div class="block"><div>${block.text}</div></div>`;
       }
       if (block.type === "list") {
-        const itemsHtml = block.items.map((item) => <li>${item}</li>).join("");
-        return <div class="block"><ul class="block-list">${itemsHtml}</ul></div>;
+        const itemsHtml = block.items.map((item) => `<li>${item}</li>`).join("");
+        return `<div class="block"><ul class="block-list">${itemsHtml}</ul></div>`;
       }
       if (block.type === "image") {
         const caption = block.caption || "";
-        return 
+        return `
           <div class="block block-image">
             <img src="${block.src}" alt="${caption}" />
-            ${caption ? <div class="block-image-caption">${caption}</div> : ""}
+            ${caption ? `<div class="block-image-caption">${caption}</div>` : ""}
           </div>
-        ;
+       ` ;
       }
       return "";
     })
     .join("");
 
-  return 
+  return `
     <div class="breadcrumbs">${roleLabel(state.role)} · ${module.title}</div>
     <div class="main-heading">${module.title}</div>
     <div class="main-description">${module.description}</div>
@@ -1070,7 +1070,7 @@ function renderLessonScreenInner(module) {
       <button class="btn" data-action="backToModules">К списку модулей</button>
       <button class="btn btn-primary" data-action="toTest">Перейти к тесту</button>
     </div>
-  ;
+  `;
 }
 
 function renderTestScreenInner(module) {
@@ -1078,29 +1078,29 @@ function renderTestScreenInner(module) {
     .map((q, qi) => {
       const optionsHtml = q.options
         .map(
-          (opt, oi) => 
+          (opt, oi) => ` 
           <label class="test-option" data-question-index="${qi}" data-option-index="${oi}">
             <input type="radio" name="q${qi}" value="${oi}" />
             <span>${opt}</span>
           </label>
-        
+        `
         )
         .join("");
 
-      return 
+      return `
         <div class="test-question">
           <div class="test-question-title">${qi + 1}. ${q.question}</div>
           <div class="test-options">${optionsHtml}</div>
         </div>
-      ;
+      `;
     })
     .join("");
 
   let messageHtml = "";
   if (state.testResult) {
     messageHtml = state.testResult.success
-      ? <div class="message message-success">Отлично! Все ответы верные. Модуль отмечен как пройден.</div>
-      : <div class="message message-error">Есть ошибки. Вернитесь к уроку, перечитайте материал и попробуйте ещё раз.</div>;
+      ? `<div class="message message-success">Отлично! Все ответы верные. Модуль отмечен как пройден.</div>`
+      : `<div class="message message-error">Есть ошибки. Вернитесь к уроку, перечитайте материал и попробуйте ещё раз.</div>`;
   }
 
   const buttonsHtml = state.testResult?.success
@@ -1109,17 +1109,17 @@ function renderTestScreenInner(module) {
         <button class="btn" data-action="backToLesson">Вернуться к уроку</button>
         <button class="btn btn-primary" data-action="backToModules">К списку модулей</button>
       </div>
-    
-    : 
+    `
+    : `
       <div class="btn-row">
         <button class="btn" data-action="backToLesson">Вернуться к уроку</button>
         <button class="btn btn-primary" data-action="checkTest">Проверить ответы</button>
       </div>
-    ;
+    `;
 
   setTimeout(() => attachTestHandlers(module), 0);
 
-  return 
+  return `
     <div class="breadcrumbs">${roleLabel(state.role)} · ${module.title} · Тест</div>
     <div class="main-heading">Тест по модулю</div>
     <div class="main-description">
@@ -1128,7 +1128,7 @@ function renderTestScreenInner(module) {
     ${questionsHtml}
     ${messageHtml}
     ${buttonsHtml}
-  ;
+  `;
 }
 
 // ====== Обработчики теста ======
@@ -1182,14 +1182,14 @@ function checkTestAnswers(module) {
   });
 
   module.test.forEach((q, qi) => {
-    const selected = mainPanel.querySelector(input[name="q${qi}"]:checked);
+    const selected = mainPanel.querySelector(`input[name="q${qi}"]:checked`);
     if (!selected) {
       allCorrect = false;
       return;
     }
 
     const selectedIndex = parseInt(selected.value, 10);
-    const options = mainPanel.querySelectorAll(.test-option[data-question-index="${qi}"]`);
+    const options = mainPanel.querySelectorAll(`.test-option[data-question-index="${qi}"]`);
 
     options.forEach((optEl) => {
       const oi = parseInt(optEl.getAttribute("data-option-index"), 10);
