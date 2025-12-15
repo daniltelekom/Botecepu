@@ -1055,7 +1055,7 @@ function renderLessonScreenInner(module) {
             <img src="${block.src}" alt="${caption}" />
             ${caption ? `<div class="block-image-caption">${caption}</div>` : ""}
           </div>
-       ` ;
+         `;
       }
       return "";
     })
